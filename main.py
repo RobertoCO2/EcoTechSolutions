@@ -12,7 +12,7 @@ depto = Departamento("Desarrollo Sostenible")
 proyecto = Proyecto("PRJ-01", "Paneles Solares Valparaíso", 15000000)
 
 emp_planta = EmpleadoPlanta(101, "María Paz Rojas", "+56911112222", "maria.rojas@ecotech.cl", 850000.0, 150000.0)
-emp_contratista = EmpleadoContratista(202, "Carlos Mendoza", "+56933334444", "carlos.mendoza@ecotech.cl", 25000.0)
+emp_contratista = EmpleadoContratista(202, "Carlos Mendoza", "+56933334444", "carlos.mendoza@ecotech.cl", 5000.0)
 
 depto.asignar_colaborador(emp_planta)
 depto.asignar_colaborador(emp_contratista)
@@ -36,4 +36,23 @@ for emp in [emp_planta, emp_contratista]:
 
 if __name__ == "__main__":
     ejecutar_sistema()
-    
+
+
+from empleado import EmpleadoPlanta
+from empleado_repositorio import EmpleadoRepositorio
+
+if __name__ == "__main__":
+    repo = EmpleadoRepositorio()
+
+    print("\n--- 1. Probando metodo Eliminaar")
+    filas_afectadas =repo.eliminar(1)
+
+    if filas_afectadas >0:
+        print("Empleado eliminado con exito.")
+    else:
+        print("No se envontro ni un empleado con ese ID.")
+
+    print("\n--- 2. Consultando Lista de Empleados Actualizada")
+    lista = repo.obtener_todos()
+    for e in lista:
+        print(f"ID: {e.id_empleado} | Nombre: {e.nombre_completo}")

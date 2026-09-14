@@ -46,7 +46,8 @@ class EmpleadoPlanta(Empleado):
         return self.obtener_renta_base() + self.__bono_mensual
 
 class EmpleadoContratista(Empleado):
-    def __init__(self, id_empleado, nombre_completo, fono_contacto, email_corporativo,renta_base=0.0, horas_mensuales=0.0, valor_hora=00):
+   
+    def __init__(self, id_empleado, nombre_completo, fono_contacto, email_corporativo, valor_hora: 0.0, renta_base=0.0, horas_mensuales=0.0):
         super().__init__(id_empleado, nombre_completo, fono_contacto, email_corporativo, renta_base)
         self.__valor_hora = valor_hora
         self.__horas_mensuales = horas_mensuales
@@ -65,6 +66,6 @@ emp_contratista.registrar_horas(160)
 
 nomina = [emp_planta, emp_contratista]
 
-print("\===LIQUIDACION DE SUELDOS ECOTECH ===")
+print("===LIQUIDACION DE SUELDOS ECOTECH ===")
 for e in nomina:
     print(f" {e.nombre_completo} | Sueldo Liquido: ${e.calcular_sueldo_liquido():,.0f}")

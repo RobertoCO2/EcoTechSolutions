@@ -53,3 +53,12 @@ class EmpleadoRepositorio:
                 (nueva_area, id_emp)) 
 
             return cur.rowcount
+
+    def eliminar(self, id_emp):
+        """Elimina un empleado de la base de datos por su ID"""
+        with sqlite3.connect(self.ruta) as con:
+            cur = con.execute(
+                "DELETE FROM empleado WHERE id = ?", (id_emp,))
+
+            return cur.rowcount
+        
