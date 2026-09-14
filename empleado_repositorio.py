@@ -46,17 +46,10 @@ class EmpleadoRepositorio:
             print(f" Error al consultar empleados: {e}")
             return []
 
-if __name__ =="__main__":
-    repo = EmpleadoRepositorio()
+    def actualizar_area(self, id_emp, nueva_area):
+        with sqlite3.connect(self.ruta)as con:
+            cur = con.execute(
+                "UPDETE empleado SET area = ?",
+                (nueva_area, id_emp)) 
 
-    print("\n--- 1. Guardado Empleado en SQLite ---")
-    emp1 = EmpleadoPlanta(1, "Maria Paz Rojas", "+56911112222", "m.pazs@ecotech.cl", 850000.0, 150000.0)
-    repo.guardar(emp1)
-
-    print("\n--- 2. Consultando Empleados desde SQLite ---")
-    lista = repo.obtener_todos()
-    for e in lista:
-        print(f" ID: {e.id_empleado} | Nombre: {e.nombre_completo} | Correo: {e.obtener_email()}")
-
-
-    
+            return cur.rowcount
