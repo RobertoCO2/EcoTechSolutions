@@ -42,12 +42,12 @@ class EmpleadoPlanta(Empleado):
         super().__init__(id_empleado, nombre_completo, fono_contacto, email_corporativo, renta_base)
         self.__bono_mensual = bono_mensual
 
-    def calular_sueldo_liquido(self) -> float:
+    def calcular_sueldo_liquido(self) -> float:
         return self.obtener_renta_base() + self.__bono_mensual
 
 class EmpleadoContratista(Empleado):
    
-    def __init__(self, id_empleado, nombre_completo, fono_contacto, email_corporativo, valor_hora: 0.0, renta_base=0.0, horas_mensuales=0.0):
+    def __init__(self, id_empleado, nombre_completo, fono_contacto, email_corporativo, valor_hora= 0.0, renta_base=0.0, horas_mensuales=0.0):
         super().__init__(id_empleado, nombre_completo, fono_contacto, email_corporativo, renta_base)
         self.__valor_hora = valor_hora
         self.__horas_mensuales = horas_mensuales
@@ -61,7 +61,7 @@ class EmpleadoContratista(Empleado):
         return self.__valor_hora * self.__horas_mensuales
 
 emp_planta = EmpleadoPlanta(101, "Maria Paz Rojas", "+56911112222", "m.paz@ecotech.cl", 850000.0, 150000.0)
-emp_contratista = EmpleadoContratista(202, "Carlos Mendoza", "+56933334444", "c.mendoza@ecotech.cl", 250000.0)
+emp_contratista = EmpleadoContratista(202, "Carlos Mendoza", "+56933334444", "c.mendoza@ecotech.cl", 5000.0)
 emp_contratista.registrar_horas(160)
 
 nomina = [emp_planta, emp_contratista]
