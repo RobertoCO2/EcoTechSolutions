@@ -19,4 +19,4 @@ class Proyecto:
 
 if __name__ == "__main__":
     p1 = Proyecto("PRJ-01", "Paneles Solares Valparaíso", 15000000.0)
-    print(f"Proyecto: {p1.nombre_proyecto} | Presupuesto: ${p1.presupuesto:,.0f}")
+    print(f"Proyecto: {p1.nombre_proyecto} | Presupuesto: ${p1.presupuesto8:,.0f}")
