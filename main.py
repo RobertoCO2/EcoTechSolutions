@@ -1,8 +1,10 @@
 from departamento import Departamento
 from proyecto import Proyecto
 from empleado import EmpleadoPlanta, EmpleadoContratista
-from registro_tiempo import RegistroTiempo
+from registrotiempo import RegistroTiempoRepositorio as RegistroTiempo
 from empleado_repositorio import EmpleadoRepositorio
+
+# imaginemos que esto es la solucion
 
 def ejecutar_sistema():
     print("============================================")

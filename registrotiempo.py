@@ -1,5 +1,5 @@
 import sqlite3
-from registro_tiempo import RegistroTiempo
+from registrotiempo import RegistroTiempo
 
 class RegistroTiempoRepositorio:
     def __init__(self, db_path="ecotech.db"):
