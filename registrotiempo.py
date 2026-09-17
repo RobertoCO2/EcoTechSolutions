@@ -1,5 +1,19 @@
 import sqlite3
-from registrotiempo import RegistroTiempo
+
+
+class RegistroTiempo:
+    def __init__(self, fecha_registro, cantidad_horas, detalle_actividad, trabajador, proyecto_asociado):
+        self.fecha_registro = fecha_registro
+        self.cantidad_horas = cantidad_horas
+        self.detalle_actividad = detalle_actividad
+        self.trabajador = trabajador
+        self.proyecto_asociado = proyecto_asociado
+
+    def mostrar_bitacora(self):
+        print(
+            f"{self.fecha_registro} | {self.trabajador.nombre_completo} | "
+            f"{self.cantidad_horas} horas | {self.detalle_actividad}"
+        )
 
 class RegistroTiempoRepositorio:
     def __init__(self, db_path="ecotech.db"):

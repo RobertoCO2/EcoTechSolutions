@@ -1,8 +1,9 @@
 from departamento import Departamento
 from proyecto import Proyecto
 from empleado import EmpleadoPlanta, EmpleadoContratista
-from registrotiempo import RegistroTiempoRepositorio as RegistroTiempo
+from registrotiempo import RegistroTiempo
 from empleado_repositorio import EmpleadoRepositorio
+from base import crear_tablas
 
 # imaginemos que esto es la solucion
 
@@ -11,7 +12,7 @@ def ejecutar_sistema():
     print("=== SISTEMA DE GESTIÓN ECOTECH SOLUTIONS ===")
     print("============================================\n")
 
-depto = Departamento("Desarrollo Sostenible")
+depto = Departamento(1, "Desarrollo Sostenible", "María Paz Rojas")
 proyecto = Proyecto("PRJ-01", "Paneles Solares Valparaíso", 15000000)
 
 emp_planta = EmpleadoPlanta(101, "María Paz Rojas", "+56911112222", "maria.rojas@ecotech.cl", 850000.0, 150000.0)
@@ -38,6 +39,7 @@ for emp in [emp_planta, emp_contratista]:
 print("\n--- REGISTRO TIEMPO ---")
 registro.mostrar_bitacora()
 
+crear_tablas()
 repo = EmpleadoRepositorio()
 repo.guardar(emp_planta)
 repo.guardar(emp_contratista)
