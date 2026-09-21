@@ -29,7 +29,7 @@ class EmpleadoRepositorio:
         try:
             with sqlite3.connect(self.ruta) as con:
                 filas = con.execute("""
-                    SELECT id, nombre_completo, fono_contacto, email_corporativo, renta_base, tipo_empleado
+                    SELECT id_empleado, nombre_completo, fono_contacto, email_corporativo, renta_base, tipo_empleado
                     FROM empleado ORDER BY nombre_completo
                     """).fetchall()
 
@@ -39,18 +39,18 @@ class EmpleadoRepositorio:
                     if f[5] == "Planta":
                         emp = EmpleadoPlanta(f[0], f[1], f[2], f[3], f[4])
                     else:
-                        emp = EmpleadoContratista(f[0], f[1], f[2], f[3], f[4])
+                        emp = EmpleadoContratista(f[0], f[1], f[2], f[3], renta_base=f[4])
                     empleados.append(emp)
                 return empleados
         except sqlite3.Error as e:
             print(f" Error al consultar empleados: {e}")
             return []
 
-    def actualizar_area(self, id_emp, nueva_area):
+    def actualizar_fono(self, id_emp, nuevo_fono):
         with sqlite3.connect(self.ruta)as con:
             cur = con.execute(
-                "UPDETE empleado SET area = ?",
-                (nueva_area, id_emp)) 
+                "UPDATE empleado SET fono_contacto = ? WHERE id_empleado = ?",
+                (nuevo_fono, id_emp)) 
 
             return cur.rowcount
 
@@ -58,7 +58,7 @@ class EmpleadoRepositorio:
         """Elimina un empleado de la base de datos por su ID"""
         with sqlite3.connect(self.ruta) as con:
             cur = con.execute(
-                "DELETE FROM empleado WHERE id = ?", (id_emp,))
+                "DELETE FROM empleado WHERE id_empleado = ?", (id_emp,))
 
             return cur.rowcount
         
