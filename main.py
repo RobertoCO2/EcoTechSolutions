@@ -4,6 +4,7 @@ from empleado import EmpleadoPlanta, EmpleadoContratista
 from registro_tiempo import RegistroTiempo
 from empleado_repositorio import EmpleadoRepositorio
 from base import crear_tablas
+from cliente_api import ClienteAPI
 
 def ejecutar_sistema():
     print("============================================")
@@ -11,6 +12,20 @@ def ejecutar_sistema():
     print("============================================\n")
 
     crear_tablas()
+    print("\n--- CONSULTA DE SERVICIO EXTERNO (API) ---")
+
+cliente = ClienteAPI()
+valor_dolar = cliente.obtener_indicador("dolar")
+
+if valor_dolar is not None:
+    print(f" Dólar del día sincronizado desde API: ${valor_dolar:.2f}")
+else:
+    print(
+        "No se pudo conectar a la API. Aplicando estrategia de degradación..."
+    )
+    valor_dolar = 950.0  # Valor referencial de respaldo
+    print(f" Usando valor referencial de contingencia: ${valor_dolar}")
+
     depto = Departamento(1, "Desarrollo Sostenible", "María Paz Rojas")
     proyecto = Proyecto("PRJ-01", "Paneles Solares Valparaíso", 15000000.0)
 
