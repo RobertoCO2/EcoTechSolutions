@@ -14,15 +14,14 @@ def ejecutar_sistema():
     crear_tablas()
     print("\n--- CONSULTA DE SERVICIO EXTERNO (API) ---")
 
-cliente = ClienteAPI()
-valor_dolar = cliente.obtener_indicador("dolar")
+    cliente = ClienteAPI()
+    valor_dolar = cliente.obtener_indicador("dolar")
 
-if valor_dolar is not None:
-    print(f" Dólar del día sincronizado desde API: ${valor_dolar:.2f}")
-else:
-    print(
-        "No se pudo conectar a la API. Aplicando estrategia de degradación..."
-    )
+    if valor_dolar is not None:
+        print(f" Dólar del día sincronizado desde API: ${valor_dolar:.2f}")
+    else:
+        print( "No se pudo conectar a la API. Aplicando estrategia de degradación...")
+    
     valor_dolar = 950.0  # Valor referencial de respaldo
     print(f" Usando valor referencial de contingencia: ${valor_dolar}")
 
